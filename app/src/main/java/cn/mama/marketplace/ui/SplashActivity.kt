@@ -1,5 +1,8 @@
 package cn.mama.marketplace.ui
 
+import android.animation.Animator.AnimatorListener
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -8,6 +11,7 @@ import cn.mama.marketplace.databinding.ActivitySplashBinding
 import cn.mama.marketplace.ui.common.ui.BaseActivity
 import com.gyf.immersionbar.ImmersionBar
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
 
     private lateinit var binding: ActivitySplashBinding
@@ -47,6 +51,7 @@ class SplashActivity : BaseActivity() {
 
     override fun setupViews() {
         super.setupViews()
+        entryMainActivity()
 
         binding.ivSplashBmg.startAnimation(scaleAnimation)
         binding.ivSlogan.startAnimation(alphaAnimation)
@@ -58,5 +63,22 @@ class SplashActivity : BaseActivity() {
         ImmersionBar.with(this)
             .transparentStatusBar()
             .init()
+    }
+
+    private fun entryMainActivity() {
+        scaleAnimation.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+
+            }
+        })
     }
 }
