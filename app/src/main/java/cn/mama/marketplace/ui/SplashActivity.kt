@@ -16,7 +16,7 @@ class SplashActivity : BaseActivity() {
     private val splashDuration = 3 * 1000L
 
     private val alphaAnimation by lazy {
-        AlphaAnimation(0.5f, 1.0f).apply {
+        AlphaAnimation(0.1f, 1.0f).apply {
             duration = splashDuration
             fillAfter = true
         }
@@ -25,7 +25,7 @@ class SplashActivity : BaseActivity() {
     private val scaleAnimation by lazy {
         ScaleAnimation(
             1f,
-            1.5f,
+            1.05f,
             1f,
             1.05f,
             Animation.RELATIVE_TO_SELF,
@@ -48,7 +48,8 @@ class SplashActivity : BaseActivity() {
     override fun setupViews() {
         super.setupViews()
 
-        //binding.ivSplashBmg.startAnimation(scaleAnimation)
+        binding.ivSplashBmg.startAnimation(scaleAnimation)
+        binding.ivSlogan.startAnimation(alphaAnimation)
     }
 
     override fun setStatusBarBackground(statusBarColor: Int) {
