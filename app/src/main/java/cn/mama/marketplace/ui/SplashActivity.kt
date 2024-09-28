@@ -50,6 +50,8 @@ class SplashActivity : BaseActivity() {
 
         binding.ivSplashBmg.startAnimation(scaleAnimation)
         binding.ivSlogan.startAnimation(alphaAnimation)
+        binding.tvDescriptionCN.startAnimation(alphaAnimation)
+        binding.tvDescriptionUS.startAnimation(alphaAnimation)
     }
 
     override fun setStatusBarBackground(statusBarColor: Int) {
