@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="cn.mama.marketplace">
+
+    <!--
+    1. 定义APP启动入口类`App`
+    2. 定义主题`@style/Marketplace`
+
+    allowBackup：应用程序元数据标记，用于指示应用程序是否允许在设备上备份
+    -->
+    <application
+        android:name=".App"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Marketplace"
+        tools:replace="android:allowBackup"
+        tools:ignore="UnusedAttribute"
+        tools:targetApi="31">
+        <!--
+        1. 定义APP启动首屏为闪屏页`exported="true"`
+        2. 定义闪屏窗口主题`@style/Marketplace.SplashActivity`
+        -->
+        <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Marketplace.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--主窗口-->
+        <activity
+            android:name=".ui.MainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+    </application>
+
+</manifest>
