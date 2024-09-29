@@ -40,7 +40,7 @@ open class BaseFragment : Fragment(), FragmentRequestLifecycle {
     protected var errorView: View? = null
 
     // 当前依附的Activity
-    lateinit var activity: Activity
+    protected lateinit var activity: Activity
 
     // 日志输出标记
     protected val TAG: String = this.javaClass.simpleName
@@ -54,12 +54,13 @@ open class BaseFragment : Fragment(), FragmentRequestLifecycle {
         logD(TAG, msg = "BaseFragment-onAttach")
     }
 
-    /// 创建Fragment时调用，在此可以执行一次性设置
+    /// 创建Fragment时调用，在此可以执行一些非UI设置
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         logD(TAG, msg = "BaseFragment-onCreate")
     }
 
+    /// 创建Fragment的布局
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -88,7 +89,7 @@ open class BaseFragment : Fragment(), FragmentRequestLifecycle {
         //当Fragment在屏幕上可见并且没有加载过数据时调用
         if (!mHasLoadedData) {
             onNetwork()
-            logD(TAG, "BaseFragment-->loadDataOnce")
+            logD(TAG, "BaseFragment-->onNetwork")
             mHasLoadedData = true
         }
     }
