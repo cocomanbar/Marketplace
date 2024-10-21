@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <!--
+    ViewStub 是一种轻量级的视图，它能够在需要的时候延迟加载其他视图，主要用于提高性能和加速初始加载时间。
+    特别是在复杂的布局中，ViewStub 可以帮助减少内存占用
+    -->
     <ViewStub
         android:id="@+id/errorHoldView"
         android:layout_width="match_parent"

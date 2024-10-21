@@ -3,6 +3,7 @@ package cn.mama.marketplace
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import cn.mama.marketplace.utils.MMKVUtil
 import cn.mama.marketplace.utils.SdkManager
 
 class App : Application() {
@@ -20,6 +21,7 @@ class App : Application() {
         super.onCreate()
         context = this
 
+        MMKVUtil.instance.init(this)
         SdkManager.initIfItNeeded(this, this)
     }
 }

@@ -70,8 +70,8 @@ android {
 }
 
 dependencies {
-
-    implementation("androidx.core:core-ktx:1.10.1")
+    // 项目创建自带
+    implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -79,13 +79,34 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    // 手动引入
+    // Android Jetpack
+    // https://developer.android.google.cn/jetpack/androidx/explorer?hl=zh-cn&case=all
+    // 使用 WorkManager API 可以轻松地调度那些必须可靠运行的可延期异步任务
+    // 通过这些 API，您可以创建任务并提交给 WorkManager，以便在满足工作约束条件时运行
+    implementation("androidx.work:work-runtime:2.9.1")
+    // 实现一种在应用启动时初始化组件的简单而高效的方法
+    implementation("androidx.startup:startup-runtime:1.1.1")
+    // 以异步、一致的事务方式存储数据，克服了 SharedPreferences 的一些缺点
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    // 使用 Paging 库，您可以更轻松地在应用的 RecyclerView 中逐步妥善地加载数据
+    implementation("androidx.paging:paging-runtime:3.3.2")
+    // 生命周期感知型组件可执行操作来响应另一个组件（如 activity 和 fragment）的生命周期状态的变化
+    // 这些组件有助于您写出更有条理且往往更精简的代码，这样的代码更易于维护
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.5")
+    // 将您的应用细分为在一个 Activity 中托管的多个独立屏幕
+    implementation("androidx.fragment:fragment-ktx:1.8.3")
+    // 在您的界面中显示大量数据，同时最大限度减少内存用量
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    // 手动引入
     implementation("com.github.getActivity:TitleBar:10.5")
     implementation("com.github.getActivity:Toaster:12.6")
     implementation("com.tencent:mmkv:1.3.4")
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("org.greenrobot:eventbus:3.3.1")
+
+    // 特定功能依赖
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
     implementation("com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar")
     implementation("com.scwang.smart:refresh-header-material:2.0.0")
