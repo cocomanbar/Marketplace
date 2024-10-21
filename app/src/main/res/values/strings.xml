@@ -2,4 +2,10 @@
     <string name="app_name">Marketplace</string>
     <string name="slogan_description_cn">每日精选视频推介，让你大开眼界。</string>
     <string name="slogan_description_us">Daily appetizersfor your eyes. Bon eyepétit.</string>
+
+    <!-- 鼓励弹窗 -->
+    <string name="encourage_message">如果你喜欢 %1$s 的设计，感觉本项目的源代码对你的学习有所帮助，可以给个 \\\"Star\\\" 支持一下，谢谢！^_^</string>
+    <string name="encourage_title">- 给个好评呗 -</string>
+    <string name="encourage_positive_text">我就不给</string>
+    <string name="encourage_negative_text">鼓励一下</string>
 </resources>
