@@ -23,7 +23,6 @@ object SdkManager {
 
     // 初始化sdk-同意隐私协议后
     private fun initAfterPermission(context: Context, application: Application) {
-        if (!LocalStorage.userAgree) return
         if (isInitAfterPrivacy) return
         isInitAfterPrivacy = true
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:paddingHorizontal="24dp"
+    android:paddingVertical="5dp">
+
+    <cn.mama.marketplace.ui.common.view.TabItemView
+        android:id="@+id/homeTab"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:high_src="@drawable/btn_home_page_selected"
+        app:high_text="首页"
+        app:isSelected="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/communityTab"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:normal_src="@drawable/btn_home_page_normal"
+        app:normal_text="首页" />
+
+    <cn.mama.marketplace.ui.common.view.TabItemView
+        android:id="@+id/communityTab"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:high_src="@drawable/btn_community_selected"
+        app:high_text="社区"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/releaseTab"
+        app:layout_constraintStart_toEndOf="@+id/homeTab"
+        app:layout_constraintTop_toTopOf="parent"
+        app:normal_src="@drawable/btn_community_normal"
+        app:normal_text="社区" />
+
+    <ImageView
+        android:id="@+id/releaseTab"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/btn_release_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/notificationTab"
+        app:layout_constraintStart_toEndOf="@id/communityTab"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <cn.mama.marketplace.ui.common.view.TabItemView
+        android:id="@+id/notificationTab"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:high_src="@drawable/btn_notification_selected"
+        app:high_text="通知"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mineTab"
+        app:layout_constraintStart_toEndOf="@+id/releaseTab"
+        app:layout_constraintTop_toTopOf="parent"
+        app:normal_src="@drawable/btn_notification_normal"
+        app:normal_text="通知" />
+
+    <cn.mama.marketplace.ui.common.view.TabItemView
+        android:id="@+id/mineTab"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:high_src="@drawable/btn_mine_selected"
+        app:high_text="我的"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/notificationTab"
+        app:layout_constraintTop_toTopOf="parent"
+        app:normal_src="@drawable/btn_mine_normal"
+        app:normal_text="我的" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
