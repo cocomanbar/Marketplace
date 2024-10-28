@@ -19,7 +19,7 @@ class NotificationFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNotificationBinding.inflate(inflater, container, false)
-        return onCreateView(binding.root)
+        return onCreateViewLayoutIfNeeded(binding.root)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

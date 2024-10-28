@@ -20,7 +20,7 @@ class CommunityFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCommunityBinding.inflate(inflater, container, false)
-        return onCreateView(binding.root)
+        return onCreateViewLayoutIfNeeded(binding.root)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

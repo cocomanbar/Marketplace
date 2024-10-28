@@ -17,7 +17,6 @@ class CommendFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
     }
 
     override fun onCreateView(
@@ -25,10 +24,11 @@ class CommendFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCommendBinding.inflate(inflater, container, false)
-        return onCreateView(binding.root)
+        return onCreateViewLayoutIfNeeded(binding.root)
     }
 
     companion object {
+        @JvmStatic
         fun newInstance() = CommendFragment()
     }
 }

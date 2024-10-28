@@ -21,7 +21,7 @@ class MineFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMineBinding.inflate(inflater, container, false)
-        return onCreateView(binding.root)
+        return onCreateViewLayoutIfNeeded(binding.root)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
