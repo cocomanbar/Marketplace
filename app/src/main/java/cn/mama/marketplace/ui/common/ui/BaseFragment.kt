@@ -27,26 +27,40 @@ interface FragmentRequestLifecycle {
 
 open class BaseFragment : Fragment(), FragmentRequestLifecycle {
 
-    // 是否已经加载过数据
+    /**
+     * 是否已经加载过数据
+     */
     private var mHasLoadedData: Boolean = false
 
-    // Fragment 最终渲染的布局
+    /**
+     * Fragment 最终渲染的布局
+     */
     protected var rootView: View? = null
 
-    // Fragment 加载等待的布局
+    /**
+     * Fragment 加载等待的布局
+     */
     protected var loadingView: View? = null
 
-    // Fragment 加载失败的布局
+    /**
+     * Fragment 加载失败的布局
+     */
     protected var errorView: View? = null
 
-    // 当前依附的Activity
+    /**
+     * 当前依附的Activity
+     */
     protected lateinit var activity: Activity
 
-    // 日志输出标记
+    /**
+     * 日志输出标记
+     */
     protected val TAG: String = this.javaClass.simpleName
 
 
-    /// 当Fragment被加入到Activity中时调用
+    /**
+     * Fragment周期方法：当Fragment被加入到Activity中时调用
+     */
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -54,35 +68,45 @@ open class BaseFragment : Fragment(), FragmentRequestLifecycle {
         logD(TAG, msg = "BaseFragment-onAttach")
     }
 
-    /// 创建Fragment时调用，在此可以执行一些非UI设置
+    /**
+     * Fragment周期方法：创建Fragment时调用，在此可以执行一些非UI设置
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         logD(TAG, msg = "BaseFragment-onCreate")
     }
 
-    /// 创建Fragment的布局
+    /**
+     * Fragment周期方法：创建Fragment的布局
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        logD(TAG, "BaseFragment-onCreateView")
+        assert(false) { "调用错误，请调用-onCreateViewLayoutIfNeeded:" }
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    /// 创建Fragment的布局时调用，返回布局的View
+    /**
+     * Fragment周期方法：创建Fragment的布局时调用，返回布局的View
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         logD(TAG, "BaseFragment-onViewCreated")
     }
 
-    /// 当Fragment变为用户可见时调用
+    /**
+     * Fragment周期方法：当Fragment变为用户可见时调用
+     */
     override fun onStart() {
         super.onStart()
         logD(TAG, "BaseFragment-onStart")
     }
 
-    /// 当Fragment开始与用户交互时调用
+    /**
+     * Fragment周期方法：当Fragment开始与用户交互时调用
+     */
     override fun onResume() {
         super.onResume()
         logD(TAG, "BaseFragment-onResume")
@@ -94,82 +118,107 @@ open class BaseFragment : Fragment(), FragmentRequestLifecycle {
         }
     }
 
-    /// 当Fragment停止与用户交互时调用
+    /**
+     * Fragment周期方法：当Fragment停止与用户交互时调用
+     */
     override fun onPause() {
         super.onPause()
         logD(TAG, "BaseFragment-onPause")
     }
 
-    /// 当Fragment不再被用户可见时调用
+    /**
+     * Fragment周期方法：当Fragment不再被用户可见时调用
+     */
     override fun onStop() {
         super.onStop()
         logD(TAG, "BaseFragment-onStop")
     }
 
-    /// 当Fragment的布局被移除时调用
+    /**
+     * Fragment周期方法：当Fragment的布局被移除时调用
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         logD(TAG, "BaseFragment-onDestroyView")
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this)
-        }
+        unRegisterEventBus()
         if (rootView?.parent != null) (rootView?.parent as ViewGroup).removeView(rootView)
     }
 
-    /// 当Fragment销毁时调用，可以进行资源回收
+    /**
+     * Fragment周期方法：当Fragment销毁时调用，可以进行资源回收
+     */
     override fun onDestroy() {
         super.onDestroy()
         logD(TAG, "BaseFragment-onDestroy")
     }
 
-    /// 当Fragment从Activity中移除时调用
+    /**
+     * Fragment周期方法:
+     * 当Fragment从Activity中移除时调用
+     */
     override fun onDetach() {
         super.onDetach()
         logD(TAG, "BaseFragment-onDetach")
     }
 
-    /// 在Fragment基类中获取通用的控件，会将传入的View实例原封不动返回
-    fun onCreateView(view: View): View {
+    /**
+     * 在Fragment基类中获取通用的控件，会将传入的[view]实例，再原封不动传回。为了赋值[rootView]以及初始化[loadingView]组件
+     */
+    fun onCreateViewLayoutIfNeeded(view: View): View {
         rootView = view
         loadingView = view.findViewById(R.id.loading)
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this)
-        }
         return view
     }
 
-    /// 开始加载，显示加载布局
+    /**
+     * 网络数据开始加载，将显示加载布局
+     */
     override fun startLoading() {
         showLoadingView()
         hideErrorView()
     }
 
-    /// 加载完成，将加载控件隐藏
+    /**
+     * 网络数据加载完成，将加载控件隐藏
+     */
     override fun loadFinished() {
         hideLoadingView()
     }
 
+    /**
+     * 子类在处理网络数据时，遇到加载请求失败时的处理行为。
+     *      1.隐藏loading视图
+     *      2.通过手动调用 -showErrorView方法展示错误提示页
+     */
     override fun loadFailed(msg: String?) {
         hideLoadingView()
     }
 
-    /// 隐藏加载布局
+    /**
+     * 隐藏加载布局
+     */
     protected fun hideLoadingView() {
         loadingView?.visibility = View.GONE
     }
 
-    /// 显示加载布局
+    /**
+     * 显示加载布局
+     */
     protected fun showLoadingView() {
         loadingView?.visibility = View.VISIBLE
     }
 
-    /// 隐藏异常布局
+    /**
+     * 隐藏异常布局
+     */
     protected fun hideErrorView() {
         errorView?.visibility = View.GONE
     }
 
-    /// 加载异常布局
-    protected fun showErrorView(tip: String, block: View.() -> UInt) {
+    /**
+     * 加载异常布局，子类调用，传入[message]错误提示信息,以及[block]点击回调
+     */
+    protected fun showErrorView(message: String, block: View.() -> UInt) {
         if (errorView != null) {
             errorView?.visibility = View.VISIBLE
             return
@@ -179,7 +228,7 @@ open class BaseFragment : Fragment(), FragmentRequestLifecycle {
             if (viewStub != null) {
                 errorView = viewStub.inflate()
                 val loadErrorText = errorView?.findViewById<TextView>(R.id.tvErrorText)
-                loadErrorText?.text = tip
+                loadErrorText?.text = message
                 val loadErrorRootView = errorView?.findViewById<View>(R.id.errorRootView)
                 loadErrorRootView?.setOnClickListener {
                     it?.block()
@@ -188,12 +237,34 @@ open class BaseFragment : Fragment(), FragmentRequestLifecycle {
         }
     }
 
-    /// 页面首次可见时调用一次该方法，在这里可以请求网络数据等
+    /**
+     *  页面首次可见时调用一次该方法，在这里可以请求网络数据等
+     */
     open fun onNetwork() {
 
     }
 
-    /// Bus通知
+    /**
+     * 添加Bus监听器，子类按需调用
+     */
+    protected fun registerEventBus() {
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
+    }
+
+    /**
+     * 移除Bus监听器，无需子类调用
+     */
+    private fun unRegisterEventBus() {
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this)
+        }
+    }
+
+    /**
+     * Bus通知，子类实现对消息[messageEvent]的解析
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onMessageEvent(messageEvent: MessageEvent) {
 

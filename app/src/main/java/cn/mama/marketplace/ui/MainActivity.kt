@@ -59,12 +59,10 @@ class MainActivity : BaseActivity() {
         ) {
             when (this) {
                 binding.tabBar.homeTab -> {
-                    notificationUiRefresh(TabEnum.HOME)
                     setTabSelection(TabEnum.HOME)
                 }
 
                 binding.tabBar.communityTab -> {
-                    notificationUiRefresh(TabEnum.COMMUNITY)
                     setTabSelection(TabEnum.COMMUNITY)
                 }
 
@@ -73,12 +71,10 @@ class MainActivity : BaseActivity() {
                 }
 
                 binding.tabBar.notificationTab -> {
-                    notificationUiRefresh(TabEnum.NOTIFICATION)
                     setTabSelection(TabEnum.NOTIFICATION)
                 }
 
                 binding.tabBar.mineTab -> {
-                    notificationUiRefresh(TabEnum.MINE)
                     setTabSelection(TabEnum.MINE)
                 }
             }
@@ -115,6 +111,7 @@ class MainActivity : BaseActivity() {
 
     @SuppressLint("CommitTransaction")
     private fun setTabSelection(tabEnum: TabEnum) {
+        notificationUiRefresh(tabEnum)
         clearAllSelected()
 
         fragmentManager.beginTransaction().apply {
@@ -165,10 +162,18 @@ class MainActivity : BaseActivity() {
     }
 
     private fun clearAllSelected() {
-        binding.tabBar.homeTab.isSelected = false
-        binding.tabBar.communityTab.isSelected = false
-        binding.tabBar.notificationTab.isSelected = false
-        binding.tabBar.mineTab.isSelected = false
+        if (binding.tabBar.homeTab.isSelected) {
+            binding.tabBar.homeTab.isSelected = false
+        }
+        if (binding.tabBar.communityTab.isSelected) {
+            binding.tabBar.communityTab.isSelected = false
+        }
+        if (binding.tabBar.notificationTab.isSelected) {
+            binding.tabBar.notificationTab.isSelected = false
+        }
+        if (binding.tabBar.mineTab.isSelected) {
+            binding.tabBar.mineTab.isSelected = false
+        }
     }
 
     private fun hideFragments(transaction: FragmentTransaction) {
@@ -200,7 +205,6 @@ class MainActivity : BaseActivity() {
     }
 
     companion object {
-
         fun start(context: Context) {
             context.startActivity(Intent(context, MainActivity::class.java))
         }

@@ -24,10 +24,19 @@ android {
 
         // 指定用于运行测试的测试仪器运行器。在这里，它是 AndroidJUnitRunner，用于运行基于 JUnit 的测试
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // 配置 debug 打印Log
+        buildFeatures {
+            buildConfig = true
+        }
     }
 
     // 用于配置不同的构建类型，例如 `release` 或 `debug`
     buildTypes {
+        // debug 配置
+        debug {
+        }
+
         // `release`配置
         release {
             // 禁用代码混淆，这是一种安全性手段，但在调试和分析时可能会带来困难
@@ -75,6 +84,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.activity:activity:1.8.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

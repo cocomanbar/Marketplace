@@ -1,7 +1,7 @@
 package cn.mama.marketplace.utils
 
 import android.util.Log
-import com.tencent.mmkv.BuildConfig
+import cn.mama.marketplace.BuildConfig
 
 /// 日志输出调试工具
 private const val VERBOSE = 1000
@@ -11,6 +11,7 @@ private const val WARN = 1003
 private const val ERROR = 1004
 private const val NONE = 1010
 
+// BuildConfig 项目需要配置出来
 private val level: Int = if (BuildConfig.DEBUG) VERBOSE else NONE
 
 fun logV(tag: String, msg: String?) {

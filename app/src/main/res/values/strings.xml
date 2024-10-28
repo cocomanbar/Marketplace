@@ -8,4 +8,6 @@
     <string name="encourage_title">- 给个好评呗 -</string>
     <string name="encourage_positive_text">我就不给</string>
     <string name="encourage_negative_text">鼓励一下</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
