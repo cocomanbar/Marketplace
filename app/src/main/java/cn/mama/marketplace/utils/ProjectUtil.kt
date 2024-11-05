@@ -1,10 +1,12 @@
 package cn.mama.marketplace.utils
 
+import android.os.Build
 import cn.mama.marketplace.App
 
-object GlobalUtil {
-
-    private val TAG = "GlobalUtil"
+/**
+ * App工程信息获取类
+ */
+object ProjectUtil {
 
     /*
     * 获取应用程序的包名
@@ -18,8 +20,15 @@ object GlobalUtil {
     val appName: String
         get() = App.context.resources.getString(App.context.applicationInfo.labelRes)
 
-    /*
-    * 获取资源文件中定义的字符串
-    * */
-    fun getResourceString(resId: Int): String = App.context.resources.getString(resId)
+    /**
+     * 获取当前设备的系统版本号，如: "8.1.0"
+     */
+    val osVersion: String
+        get() = Build.VERSION.RELEASE
+
+    /**
+     * 获取当前设备的SDK版本号
+     */
+    val sdkVersion: Int
+        get() = Build.VERSION.SDK_INT
 }

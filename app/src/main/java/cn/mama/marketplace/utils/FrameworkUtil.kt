@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.hjq.toast.Toaster
 
-object SdkManager {
+object FrameworkUtil {
 
     private var isInitAfterPrivacy = false
 

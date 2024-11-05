@@ -18,7 +18,7 @@ import cn.mama.marketplace.ui.home.HomeFragment
 import cn.mama.marketplace.ui.login.LoginActivity
 import cn.mama.marketplace.ui.mine.MineFragment
 import cn.mama.marketplace.ui.notification.NotificationFragment
-import cn.mama.marketplace.utils.DialogAppraiseTipsWorker
+import cn.mama.marketplace.worker.DialogAppraiseTipsWorker
 import com.google.common.eventbus.EventBus
 
 class MainActivity : BaseActivity() {

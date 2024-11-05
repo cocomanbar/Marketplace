@@ -5,14 +5,14 @@ import android.os.Parcelable
 import com.tencent.mmkv.MMKV
 
 
-class MMKVUtil private constructor() {
+class PreferenceUtil private constructor() {
 
     // 懒加载
     // set保护
     lateinit var mmkv: MMKV private set
 
     companion object {
-        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { MMKVUtil() }
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { PreferenceUtil() }
     }
 
     fun init(context: Context) {

@@ -10,18 +10,25 @@ import cn.mama.marketplace.databinding.FragmentHomeContainerBinding
 import cn.mama.marketplace.event.MessageEvent
 import cn.mama.marketplace.event.PageRefreshEvent
 import cn.mama.marketplace.event.PageSwitchEvent
+import cn.mama.marketplace.extension.setOnClickListener
+import cn.mama.marketplace.extension.showToast
 import cn.mama.marketplace.ui.common.model.TabEntity
-import cn.mama.marketplace.ui.common.ui.BaseFragment
 import cn.mama.marketplace.ui.common.ui.BasePagerFragment
 import cn.mama.marketplace.ui.home.commend.CommendFragment
 import cn.mama.marketplace.ui.home.daily.DailyFragment
 import cn.mama.marketplace.ui.home.discovery.DiscoveryFragment
+import cn.mama.marketplace.utils.ResourceUtil
+import cn.mama.marketplace.utils.StatusBarUtil
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.google.common.eventbus.EventBus
 
 class HomeFragment : BasePagerFragment() {
 
     private lateinit var binding: FragmentHomeContainerBinding
+
+    private val statusBarUtil: StatusBarUtil by lazy {
+        StatusBarUtil(activity)
+    }
 
     override val createTitles = ArrayList<CustomTabEntity>().apply {
         add(TabEntity("发现"))
@@ -40,6 +47,9 @@ class HomeFragment : BasePagerFragment() {
         super.onCreate(savedInstanceState)
 
         registerEventBus()
+
+        statusBarUtil.setStatusBarColor(ResourceUtil.getColorInt(R.color.colorPrimary))
+        statusBarUtil.makeDarkMode()
     }
 
     override fun onCreateView(
@@ -54,6 +64,20 @@ class HomeFragment : BasePagerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewPager?.currentItem = 1
+        binding.titleBar.ivCalender.visibility = View.VISIBLE
+        binding.titleBar.ivSearch.visibility = View.VISIBLE
+
+        setOnClickListener(binding.titleBar.ivCalender, binding.titleBar.ivSearch) {
+            when (this) {
+                binding.titleBar.ivCalender -> {
+                    R.string.currently_not_supported.showToast()
+                }
+
+                binding.titleBar.ivSearch -> {
+
+                }
+            }
+        }
     }
 
     override fun onMessageEvent(messageEvent: MessageEvent) {

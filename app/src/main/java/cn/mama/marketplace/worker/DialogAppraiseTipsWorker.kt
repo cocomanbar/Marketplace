@@ -1,4 +1,4 @@
-package cn.mama.marketplace.utils
+package cn.mama.marketplace.worker
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,6 +11,11 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import cn.mama.marketplace.R
+import cn.mama.marketplace.utils.PreferenceUtil
+import cn.mama.marketplace.utils.ProjectUtil
+import cn.mama.marketplace.utils.ResourceUtil
+import cn.mama.marketplace.utils.dp2px
+import cn.mama.marketplace.utils.screenWidth
 import java.util.concurrent.TimeUnit
 
 /*
@@ -50,9 +55,9 @@ class DialogAppraiseTipsWorker(val context: Context, parameters: WorkerParameter
             .build()
 
         var isNeedShowDialog: Boolean
-            get() = MMKVUtil.instance.getBoolean("is_need_show_dialog", defaultValue = true)
+            get() = PreferenceUtil.instance.getBoolean("is_need_show_dialog", defaultValue = true)
             set(value) {
-                MMKVUtil.instance.put("is_need_show_dialog", value)
+                PreferenceUtil.instance.put("is_need_show_dialog", value)
             }
 
         private var dialog: AlertDialog? = null
@@ -65,8 +70,8 @@ class DialogAppraiseTipsWorker(val context: Context, parameters: WorkerParameter
                 LayoutInflater.from(context).inflate(R.layout.layout_appraise_dialog, null)
                     .apply {
                         findViewById<TextView>(R.id.tvEncourageMessage).text = String.format(
-                            GlobalUtil.getResourceString(R.string.encourage_message),
-                            GlobalUtil.appName
+                            ResourceUtil.getString(R.string.encourage_message),
+                            ProjectUtil.appName
                         )
                         findViewById<TextView>(R.id.tvPositiveButton).setOnClickListener {
                             dialog?.dismiss()
