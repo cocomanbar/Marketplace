@@ -17,8 +17,6 @@ import cn.mama.marketplace.ui.common.ui.BasePagerFragment
 import cn.mama.marketplace.ui.home.commend.CommendFragment
 import cn.mama.marketplace.ui.home.daily.DailyFragment
 import cn.mama.marketplace.ui.home.discovery.DiscoveryFragment
-import cn.mama.marketplace.utils.ResourceUtil
-import cn.mama.marketplace.utils.StatusBarUtil
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.google.common.eventbus.EventBus
 
@@ -26,35 +24,19 @@ class HomeFragment : BasePagerFragment() {
 
     private lateinit var binding: FragmentHomeContainerBinding
 
-    private val statusBarUtil: StatusBarUtil by lazy {
-        StatusBarUtil(activity)
-    }
 
-    override val createTitles = ArrayList<CustomTabEntity>().apply {
-        add(TabEntity("发现"))
-        add(TabEntity("推荐"))
-        add(TabEntity("日报"))
-    }
+    override val createTitles: ArrayList<CustomTabEntity> = HomeTabEnum.homeTabEntities
 
-    override val createFragments: Array<Fragment> =
-        arrayOf(
-            CommendFragment.newInstance(),
-            DailyFragment.newInstance(),
-            DiscoveryFragment.newInstance()
-        )
+    override val createFragments: ArrayList<Fragment> = HomeTabEnum.homeTabFragments
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        registerEventBus()
 
-        statusBarUtil.setStatusBarColor(ResourceUtil.getColorInt(R.color.colorPrimary))
-        statusBarUtil.makeDarkMode()
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeContainerBinding.inflate(inflater, container, false)
         return onCreateViewLayoutIfNeeded(binding.root)
@@ -80,25 +62,85 @@ class HomeFragment : BasePagerFragment() {
         }
     }
 
+    @Suppress("UnstableApiUsage")
     override fun onMessageEvent(messageEvent: MessageEvent) {
         super.onMessageEvent(messageEvent)
 
         if (messageEvent is PageRefreshEvent && this::class.java == messageEvent.activityClass) {
             when (viewPager?.currentItem) {
-                0 -> EventBus().post(PageRefreshEvent(DiscoveryFragment::class.java))
-                1 -> EventBus().post(PageRefreshEvent(CommendFragment::class.java))
-                2 -> EventBus().post(PageRefreshEvent(DailyFragment::class.java))
+                HomeTabEnum.DISCOVERY.index -> EventBus().post(PageRefreshEvent(HomeTabEnum.DISCOVERY.activityClass))
+                HomeTabEnum.COMMEND.index -> EventBus().post(PageRefreshEvent(HomeTabEnum.COMMEND.activityClass))
+                HomeTabEnum.DAILY.index -> EventBus().post(PageRefreshEvent(HomeTabEnum.DAILY.activityClass))
             }
         } else if (messageEvent is PageSwitchEvent) {
             when (messageEvent.activityClass) {
-                DiscoveryFragment::class.java -> viewPager?.currentItem = 0
-                CommendFragment::class.java -> viewPager?.currentItem = 1
-                DailyFragment::class.java -> viewPager?.currentItem = 2
+                HomeTabEnum.DISCOVERY.activityClass -> viewPager?.currentItem =
+                    HomeTabEnum.DISCOVERY.index
+
+                HomeTabEnum.COMMEND.activityClass -> viewPager?.currentItem =
+                    HomeTabEnum.COMMEND.index
+
+                HomeTabEnum.DAILY.activityClass -> viewPager?.currentItem = HomeTabEnum.DAILY.index
             }
         }
     }
 
     companion object {
         fun newInstance() = HomeFragment()
+    }
+}
+
+interface HomeTabInterface {
+    val index: Int
+    val tabName: String
+    val fragment: Fragment
+    val activityClass: Class<*>
+}
+
+enum class HomeTabEnum : HomeTabInterface {
+    DISCOVERY {
+        override val index: Int
+            get() = 0
+        override val activityClass: Class<*>
+            get() = DiscoveryFragment::class.java
+        override val tabName: String
+            get() = "发现"
+        override val fragment: Fragment
+            get() = DiscoveryFragment.newInstance()
+    },
+    COMMEND {
+        override val index: Int
+            get() = 1
+        override val tabName: String
+            get() = "推荐"
+        override val activityClass: Class<*>
+            get() = CommendFragment::class.java
+        override val fragment: Fragment
+            get() = CommendFragment.newInstance()
+    },
+    DAILY {
+        override val index: Int
+            get() = 2
+        override val tabName: String
+            get() = "日报"
+        override val activityClass: Class<*>
+            get() = DailyFragment::class.java
+        override val fragment: Fragment
+            get() = DailyFragment.newInstance()
+    };
+
+    companion object {
+        val homeTabEntities: ArrayList<CustomTabEntity>
+            get() = arrayListOf(
+                TabEntity(DISCOVERY.tabName),
+                TabEntity(COMMEND.tabName),
+                TabEntity(DAILY.tabName),
+            )
+        val homeTabFragments: ArrayList<Fragment>
+            get() = arrayListOf(
+                DISCOVERY.fragment,
+                COMMEND.fragment,
+                DAILY.fragment,
+            )
     }
 }

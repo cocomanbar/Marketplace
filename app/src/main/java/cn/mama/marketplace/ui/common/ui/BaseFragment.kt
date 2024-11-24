@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import cn.mama.marketplace.event.MessageEvent
-import cn.mama.marketplace.utils.ResourceUtil
 import cn.mama.marketplace.utils.logD
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -39,6 +38,11 @@ open class BaseFragment : Fragment() {
     protected val TAG: String = this.javaClass.simpleName
 
     /**
+     * 是否注册EventBus，默认关闭
+     */
+    open val eventBusOpenable: Boolean = false
+
+    /**
      * Fragment周期方法：当Fragment被加入到Activity中时调用
      */
     override fun onAttach(context: Context) {
@@ -54,6 +58,10 @@ open class BaseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         logD(TAG, msg = "BaseFragment-onCreate")
+
+        if (eventBusOpenable) {
+            registerEventBus()
+        }
     }
 
     /**
@@ -144,16 +152,16 @@ open class BaseFragment : Fragment() {
     }
 
     /**
-     * 添加Bus监听器，子类按需调用
+     * 添加Bus监听器
      */
-    protected fun registerEventBus() {
+    private fun registerEventBus() {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
     }
 
     /**
-     * 移除Bus监听器，自动判断移除
+     * 移除Bus监听器
      */
     private fun unRegisterEventBus() {
         if (EventBus.getDefault().isRegistered(this)) {
@@ -162,17 +170,10 @@ open class BaseFragment : Fragment() {
     }
 
     /**
-     * Bus通知，子类实现对消息[messageEvent]的解析
+     * Bus通知，子类实现对消息[messageEvent]的解析，注意避免耗时任务ANR
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onMessageEvent(messageEvent: MessageEvent) {
 
-    }
-
-    /**
-     * 设置状态栏背景颜色[color]
-     */
-    protected fun setStatusBarBackgroundColor(color: Int) {
-        activity.window?.statusBarColor = ResourceUtil.getColorInt(color)
     }
 }

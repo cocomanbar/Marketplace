@@ -10,7 +10,7 @@
     <string name="encourage_negative_text">鼓励一下</string>
 
     <string name="currently_not_supported">该功能即将开放，敬请期待</string>
-
+    <string name="press_again_to_exit">再按一次退出%1$s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

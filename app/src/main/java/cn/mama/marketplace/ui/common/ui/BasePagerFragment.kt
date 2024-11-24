@@ -16,6 +16,10 @@ import com.flyco.tablayout.listener.OnTabSelectListener
  * Fragment基类，适用场景：页面含有ViewPager+TabLayout的界面
  */
 abstract class BasePagerFragment : BaseFragment() {
+    /**
+     * 默认开启EventBus
+     */
+    override val eventBusOpenable: Boolean = true
 
     /**
      * 页面切换展示[viewPager]
@@ -54,7 +58,7 @@ abstract class BasePagerFragment : BaseFragment() {
     /**
      * 滑动页面数组[createFragments]
      */
-    abstract val createFragments: Array<Fragment>
+    abstract val createFragments: ArrayList<Fragment>
 
     /**
      * Fragment周期方法：创建完[view]的回调，在这里初始化[viewPager]以及[tabLayout]的框架
@@ -115,7 +119,7 @@ abstract class BasePagerFragment : BaseFragment() {
     class VpAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
         private val fragmentList = mutableListOf<Fragment>()
 
-        fun addFragments(fragments: Array<Fragment>) {
+        fun addFragments(fragments: ArrayList<Fragment>) {
             fragmentList.clear()
             fragmentList.addAll(fragments)
         }

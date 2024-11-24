@@ -1,6 +1,5 @@
 package cn.mama.marketplace.ui
 
-import android.animation.Animator.AnimatorListener
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +8,6 @@ import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import cn.mama.marketplace.databinding.ActivitySplashBinding
 import cn.mama.marketplace.ui.common.ui.BaseActivity
-import com.gyf.immersionbar.ImmersionBar
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
@@ -53,16 +51,12 @@ class SplashActivity : BaseActivity() {
         super.setupViews()
         entryMainActivity()
 
+        statusBarUtil.makeTransparentStatusBar()
+
         binding.ivSplashBmg.startAnimation(scaleAnimation)
         binding.ivSlogan.startAnimation(alphaAnimation)
         binding.tvDescriptionCN.startAnimation(alphaAnimation)
         binding.tvDescriptionUS.startAnimation(alphaAnimation)
-    }
-
-    override fun setStatusBarBackground(statusBarColor: Int) {
-        ImmersionBar.with(this)
-            .transparentStatusBar()
-            .init()
     }
 
     private fun entryMainActivity() {
