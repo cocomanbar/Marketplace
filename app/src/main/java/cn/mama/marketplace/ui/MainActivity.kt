@@ -196,6 +196,9 @@ class MainActivity : BaseActivity() {
 
     private fun observe() {
         WorkManager.getInstance(this)
+            .enqueue(DialogAppraiseTipsWorker.showDialogWorkRequest)
+
+        WorkManager.getInstance(this)
             .getWorkInfoByIdLiveData(DialogAppraiseTipsWorker.showDialogWorkRequest.id)
             .observe(this) { workInfo ->
                 if (workInfo.state == WorkInfo.State.SUCCEEDED) {

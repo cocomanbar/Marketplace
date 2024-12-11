@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import cn.mama.marketplace.event.MessageEvent
+import cn.mama.marketplace.utils.StatusBarUtil
 import cn.mama.marketplace.utils.logD
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -41,6 +42,13 @@ open class BaseFragment : Fragment() {
      * 是否注册EventBus，默认关闭
      */
     open val eventBusOpenable: Boolean = false
+
+    /**
+     *  导航栏的管理类
+     */
+    protected val statusBarUtil by lazy {
+        StatusBarUtil(activity)
+    }
 
     /**
      * Fragment周期方法：当Fragment被加入到Activity中时调用

@@ -50,7 +50,7 @@ class DialogAppraiseTipsWorker(val context: Context, parameters: WorkerParameter
 
         val showDialogWorkRequest = OneTimeWorkRequest.Builder(DialogAppraiseTipsWorker::class.java)
             .addTag(TAG)
-            .setInitialDelay(duration = 1, TimeUnit.MINUTES)
+            .setInitialDelay(duration = 10, TimeUnit.SECONDS)
             .setBackoffCriteria(BackoffPolicy.LINEAR, backoffDelay = 5, TimeUnit.SECONDS)
             .build()
 
