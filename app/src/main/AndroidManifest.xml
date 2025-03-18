@@ -41,6 +41,12 @@
             android:name=".ui.login.LoginActivity"
             android:exported="false"
             android:theme="@style/Marketplace.BottomToTopSlide" />
+        <activity
+            android:name=".learn.LRadioButtonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".learn.LScrollViewActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -9,7 +9,9 @@ import cn.mama.marketplace.R
 import cn.mama.marketplace.databinding.FragmentCommendBinding
 import cn.mama.marketplace.ui.common.ui.BaseFragment
 
-
+/**
+ * 首页-推荐列表界面
+ */
 class CommendFragment : BaseFragment() {
 
     private lateinit var binding: FragmentCommendBinding

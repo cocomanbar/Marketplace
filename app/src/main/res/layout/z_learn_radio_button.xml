@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".learn.LRadioButtonActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请选择性别"
+                android:textColor="@color/peonyRed"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:text="男性"
+                    tools:ignore="HardcodedText" />
+
+                <RadioButton
+                    android:id="@+id/radioFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="30dp"
+                    android:checked="false"
+                    android:text="女性"
+                    tools:ignore="HardcodedText" />
+
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="提交"
+                android:textColor="@color/blue"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/checkbox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:text="选项1"
+                android:textColor="@drawable/learn_selector_2"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText,RtlSymmetry" />
+
+            <CheckBox
+                android:id="@+id/checkbox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="选项2"
+                android:textColor="@drawable/learn_selector_2"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+            <CheckBox
+                android:id="@+id/checkbox3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="选项3"
+                android:textColor="@drawable/learn_selector_2"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+            <CheckBox
+                android:id="@+id/checkbox4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="选项4"
+                android:textColor="@drawable/learn_selector_2"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="保存"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
+
+            <ToggleButton
+                android:id="@+id/toggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:checked="true"
+                android:textColor="@color/green"
+                android:textOff="打开声音"
+                android:textOn="关闭声音"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:paddingStart="50dp"
+                android:showText="true"
+                android:textColor="@color/green"
+                android:textOff="哈哈"
+                android:textOn="嘿嘿"
+                tools:ignore="HardcodedText,RtlSymmetry,UseSwitchCompatOrMaterialXml" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,14 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
-import cn.mama.marketplace.R
 import cn.mama.marketplace.event.MessageEvent
 import cn.mama.marketplace.utils.ActivityCollector
 import cn.mama.marketplace.utils.StatusBarUtil
 import cn.mama.marketplace.utils.logD
-import com.gyf.immersionbar.ImmersionBar
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

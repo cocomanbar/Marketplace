@@ -32,4 +32,10 @@
     <color name="gray">#ededed</color>
     <color name="grayDark">#adadad</color>
     <color name="loading">#cdcdcd</color>
+    <color name="green">#00FF00</color>
+    <color name="red">#FF0000</color>
+    <color name="peonyRed">#FF00FF</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="brown">#A67D3D</color>
+    
 </resources>

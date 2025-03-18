@@ -3,7 +3,6 @@ package cn.mama.marketplace.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import cn.mama.marketplace.R
 import cn.mama.marketplace.databinding.ActivityLoginBinding
 import cn.mama.marketplace.ui.common.ui.BaseActivity
 
