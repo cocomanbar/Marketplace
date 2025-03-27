@@ -1,0 +1,34 @@
+{
+  "code": 0,
+  "msg": "ok",
+  "data": {
+    "list": [
+      {
+        "title": "TitleBar",
+        "content": "Android 标题栏框架，从此布局属性不用记",
+        "activity": "cn.mama.marketplace.learn.tabbar.LearnTabbarActivity"
+      },
+      {
+        "title": "JSON和模型的转换",
+        "content": "轮子哥的GsonFactory库的使用，单纯的gson在kotlin使用会有空值不安全的问题",
+        "activity": "cn.mama.marketplace.learn.gson.LearnGsonActivity"
+      },
+      {
+        "title": "页面状态管理组件：缺省页StateLayout",
+        "content": "Android上最强大的缺省页框架",
+        "activity": "cn.mama.marketplace.learn.stateLayout.LearnStateLayoutActivity"
+      },
+      {
+        "title": "页面刷新组件 smartRefreshLayout",
+        "content": "\uD83D\uDD25下拉刷新、上拉加载、二级刷新、淘宝二楼、RefreshLayout、OverScroll，Android智能下拉刷新框架，支持越界回弹、越界拖动，具有极强的扩展性，集成了几十种炫酷的Header和 Footer。",
+        "activity": "cn.mama.marketplace.learn.smartRefreshLayout.LearnSmartRefreshLayoutActivity"
+      },
+      {
+        "title": "RecyclerView 与 BRV",
+        "content": "Android 快速构建 RecyclerView, 比 BRVAH 更简单强大",
+        "activity": "cn.mama.marketplace.learn.baseRecyclerView.LearnRecyclerViewActivity"
+      }
+    ]
+  }
+}
+

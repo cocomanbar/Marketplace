@@ -81,13 +81,13 @@ android {
 dependencies {
     // 项目创建自带
     implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.activity:activity:1.8.0")
+    implementation("androidx.activity:activity:1.9.0")
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 
     // Android Jetpack
     // https://developer.android.google.cn/jetpack/androidx/explorer?hl=zh-cn&case=all
@@ -97,7 +97,7 @@ dependencies {
     // 实现一种在应用启动时初始化组件的简单而高效的方法
     implementation("androidx.startup:startup-runtime:1.1.1")
     // 以异步、一致的事务方式存储数据，克服了 SharedPreferences 的一些缺点
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation("androidx.datastore:datastore-preferences:1.1.3")
     // 使用 Paging 库，您可以更轻松地在应用的 RecyclerView 中逐步妥善地加载数据
     implementation("androidx.paging:paging-runtime:3.3.2")
     // 生命周期感知型组件可执行操作来响应另一个组件（如 activity 和 fragment）的生命周期状态的变化
@@ -106,21 +106,41 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.5")
     // 将您的应用细分为在一个 Activity 中托管的多个独立屏幕
     implementation("androidx.fragment:fragment-ktx:1.8.3")
-    // 在您的界面中显示大量数据，同时最大限度减少内存用量
+    // recyclerview：在您的界面中显示大量数据，同时最大限度减少内存用量
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
-    // 手动引入
-    implementation("com.github.getActivity:TitleBar:10.5")
-    implementation("com.github.getActivity:Toaster:12.6")
-    implementation("com.tencent:mmkv:1.3.4")
+    // GsonFactory
+    // Gson 解析容错：https://github.com/getActivity/GsonFactory
+    implementation("com.github.getActivity:GsonFactory:9.6")
+    // Json 解析框架：https://github.com/google/gson
     implementation("com.google.code.gson:gson:2.11.0")
+    // Kotlin 反射库：用于反射 Kotlin data class 类对象，版本号 请修改成当前项目 Kotlin 的版本号
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
+
+    // 标题栏：https://github.com/getActivity/TitleBar
+    implementation("com.github.getActivity:TitleBar:10.6")
+    // Toaster：https://github.com/getActivity/Toaster
+    implementation("com.github.getActivity:Toaster:12.6")
+
+    // mmkv：https://github.com/Tencent/MMKV
+    implementation("com.tencent:mmkv:1.3.4")
+    // eventbus：https://github.com/greenrobot/EventBus
     implementation("org.greenrobot:eventbus:3.3.1")
+
+    // 缺省页框架StateLayout: https://github.com/liangjingkanji/StateLayout
+    implementation("com.github.liangjingkanji:StateLayout:1.4.2")
+
+    // 刷新框架 https://github.com/scwang90/SmartRefreshLayout
+    implementation("io.github.scwang90:refresh-layout-kernel:3.0.0-alpha")      //核心必须依赖
+    implementation("io.github.scwang90:refresh-header-classics:3.0.0-alpha")    //经典刷新头
+    implementation("io.github.scwang90:refresh-footer-classics:3.0.0-alpha")    //经典加载
+
+    // 搭配recyclerview的适配器：https://github.com/liangjingkanji/BRV
+    implementation("com.github.liangjingkanji:BRV:1.6.1")
 
     // 特定功能依赖
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
     implementation("com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar")
-    implementation("com.scwang.smart:refresh-header-material:2.0.0")
-    implementation("com.scwang.smart:refresh-layout-kernel:2.0.0")
     implementation("com.github.zhpanvip:BannerViewPager:3.1.2")
     implementation("com.geyifeng.immersionbar:immersionbar:3.2.2")
     implementation("com.geyifeng.immersionbar:immersionbar-ktx:3.2.2")
@@ -128,5 +148,4 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.android.support:multidex:1.0.3")
     implementation("com.shuyu:GSYVideoPlayer:8.1.2")
-
 }

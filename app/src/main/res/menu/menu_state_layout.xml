@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/loading"
+        android:orderInCategory="100"
+        android:title="加载状态"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/empty"
+        android:orderInCategory="100"
+        android:title="空状态"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/error"
+        android:orderInCategory="100"
+        android:title="错误状态"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/normal"
+        android:orderInCategory="100"
+        android:title="正常状态"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/custom"
+        android:orderInCategory="100"
+        android:title="自定义状态"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+</menu>

@@ -50,7 +50,7 @@ open class BaseActivity : AppCompatActivity() {
     /**
      * 日志标记
      */
-    private val TAG: String = this.javaClass.simpleName
+    protected val tag: String = this.javaClass.simpleName
 
     /**
      * 返回按钮事件，通过[onBackPressable]控制是否拦截返回事件
@@ -72,7 +72,7 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        logD(TAG, msg = "BaseActivity-onCreate")
+        logD(tag, msg = "BaseActivity-onCreate")
 
         activity = this
         activityWR = WeakReference(activity!!)
@@ -89,49 +89,49 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        logD(TAG, msg = "BaseActivity-onSaveInstanceState")
+        logD(tag, msg = "BaseActivity-onSaveInstanceState")
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        logD(TAG, msg = "BaseActivity-onRestoreInstanceState")
+        logD(tag, msg = "BaseActivity-onRestoreInstanceState")
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        logD(TAG, msg = "BaseActivity-onNewIntent")
+        logD(tag, msg = "BaseActivity-onNewIntent")
     }
 
     override fun onRestart() {
         super.onRestart()
-        logD(TAG, msg = "BaseActivity-onRestart")
+        logD(tag, msg = "BaseActivity-onRestart")
     }
 
     override fun onStart() {
         super.onStart()
-        logD(TAG, msg = "BaseActivity-onStart")
+        logD(tag, msg = "BaseActivity-onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        logD(TAG, msg = "BaseActivity-onResume")
+        logD(tag, msg = "BaseActivity-onResume")
         isActive = true
     }
 
     override fun onPause() {
         super.onPause()
-        logD(TAG, msg = "BaseActivity-onPause")
+        logD(tag, msg = "BaseActivity-onPause")
         isActive = false
     }
 
     override fun onStop() {
         super.onStop()
-        logD(TAG, msg = "BaseActivity-onStop")
+        logD(tag, msg = "BaseActivity-onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        logD(TAG, msg = "BaseActivity-onDestroy")
+        logD(tag, msg = "BaseActivity-onDestroy")
         activity = null
         ActivityCollector.removeActivity(activityWR)
         if (EventBus.getDefault().isRegistered(this)) {
@@ -159,6 +159,13 @@ open class BaseActivity : AppCompatActivity() {
      */
     protected open fun setupViews() {
 
+    }
+
+    /**
+     * 返回上一级
+     */
+    open fun onBack() {
+        onBackPressedDispatcher.onBackPressed()
     }
 
     /**

@@ -47,4 +47,11 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
 
+    <!--  状态页 加载圈  -->
+    <style name="StateLoadingBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:indeterminateTint">@color/blue</item>
+    </style>
+
 </resources>

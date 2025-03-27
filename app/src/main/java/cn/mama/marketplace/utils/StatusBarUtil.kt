@@ -23,7 +23,7 @@ class StatusBarUtil(private val activity: Activity) {
      * 普通样式的状态栏颜色
      */
     protected val normalBarColor by lazy {
-        R.color.colorPrimary
+        R.color.white
     }
 
     /**
